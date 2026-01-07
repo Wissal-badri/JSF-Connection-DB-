@@ -1,0 +1,8 @@
+build/
+dist/
+nbproject/private/
+*.class
+*.apk
+*.ap_
+.DS_Store
+Thumbs.db

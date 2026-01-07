@@ -29,11 +29,14 @@ public class ProduitBean implements Serializable {
         produitService = new ProduitService();
         listeProduits = new java.util.ArrayList<>();
         System.out.println("ProduitBean initialisé");
+        // Initialiser la liste au démarrage
+        listerProduits();
     }
 
     // Méthode appelée par le bouton "Lister"
     public String listerProduits() {
         listeProduits = produitService.findAll();
+        System.out.println("Liste rechargée : " + (listeProduits != null ? listeProduits.size() : "null"));
         return null; // Reste sur la même page
     }
 
@@ -87,6 +90,9 @@ public class ProduitBean implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "Succès", "Produit inséré avec succès!"));
 
+            // Keep messages for the redirect
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+
             // Réinitialiser les champs
             code = null;
             description = null;
@@ -94,7 +100,11 @@ public class ProduitBean implements Serializable {
             prix = null;
 
             System.out.println("Produit inséré avec succès!");
-            return null;
+
+            // Refresh the list
+            listerProduits();
+
+            return "index?faces-redirect=true";
 
         } catch (Exception e) {
             System.err.println("Erreur lors de l'insertion: " + e.getMessage());

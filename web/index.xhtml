@@ -4,53 +4,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Formulaire d'insertion de produit</title>
+    <title>Liste des produits</title>
 </h:head>
 <h:body>
-    <h1>Formulaire d'insertion de produit</h1>
+    <h1>Liste des produits</h1>
 
-    <h:messages showDetail="true" showSummary="true" style="color:red; font-weight:bold;" />
+    <h:messages globalOnly="true" showDetail="true" showSummary="true" style="color:green; font-weight:bold;" />
 
     <h:form>
-        <table border="1" cellpadding="5">
-            <tr>
-                <td>Code:</td>
-                <td>
-                    <h:inputText id="code" value="#{produitBean.code}" required="false" />
-                </td>
-            </tr>
-            <tr>
-                <td>Description:</td>
-                <td>
-                    <h:inputText id="description" value="#{produitBean.description}" required="false" />
-                </td>
-            </tr>
-            <tr>
-                <td>Quantité:</td>
-                <td>
-                    <h:inputText id="quantite" value="#{produitBean.quantite}" required="false" />
-                </td>
-            </tr>
-            <tr>
-                <td>Prix:</td>
-                <td>
-                    <h:inputText id="prix" value="#{produitBean.prix}" required="false" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <h:commandButton value="Insertion" action="#{produitBean.insererProduit}" />
-                    <h:commandButton value="Lister" action="#{produitBean.listerProduits}" />
-                </td>
-            </tr>
-        </table>
+        <h:commandButton value="Ajouter un produit" action="ajouterProduit?faces-redirect=true" />
     </h:form>
 
     <br />
-    <hr />
-    <br />
 
-    <!-- Tableau pour afficher la liste des produits -->
     <h:dataTable value="#{produitBean.listeProduits}" var="p" border="1" cellpadding="5">
         <h:column>
             <f:facet name="header">Code</f:facet>
